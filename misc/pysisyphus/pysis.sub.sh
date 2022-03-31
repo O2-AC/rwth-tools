@@ -224,6 +224,13 @@ echo "Directory Contents:"
 ls -lAh
 echo ""
 
+# Remove qm_calcs folder if present
+qm="qm_calcs"
+if [ -d "\$qm" ]; then
+  echo "Removing "\qm"..."
+  rm -rf "\$qm"
+fi
+
 echo "Creating archive:"
 # Create zipfile
 if command -v tar ; then
