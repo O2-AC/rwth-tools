@@ -12,6 +12,14 @@
 #
 echo "Entering bash on $HOSTNAME."
 
+if [[ $( grep "NAME" < /etc/os-release ) =~ "Cent" ]]; then
+  os="CentOS"
+elif [[ $( grep "NAME" < /etc/os-release ) =~ "Cent" ]]; then 
+  os="Rocky"
+else
+  os="Unknown"
+fi
+
 # Temporarily disable and debug
 #
 # env | less
@@ -27,7 +35,8 @@ if [[ $HOSTNAME =~ [Rr][Ww][Tt][Hh] ]] ; then
   printf 'Loading specific scripts: ' 
   tmp_script="/etc/profile.d/bash_completion.sh"
   [ -e "$tmp_script" ] && { printf '%s ' "$tmp_script" ; source "$tmp_script" ; }
-  tmp_script="/usr/share/Modules/init/bash_completion"
+  [[ $os =~ "CentOS" ]] && tmp_script="/usr/share/Modules/init/bash_completion"
+  [[ $os =~ "Rocky" ]] && tmp_script="/usr/local_host/etc/bashrc"
   [ -e "$tmp_script" ] && { printf '%s ' "$tmp_script" ; source "$tmp_script" ; }
   printf '\n'
   unset tmp_script
@@ -155,7 +164,11 @@ fi
 local_etc_profile_dir="$HOME/local/bash_profile.d"
 if [[ -d $local_etc_profile_dir ]] ; then
   for script in "$local_etc_profile_dir"/*.bash ; do
-    [[ -r $script ]] && . "$script"
+    if [[ $os == "Rocky" ]]; then
+      [[ $script =~ "rwth-modulesrc" ]] || [[ -r $script ]] && source "$script"
+    elif [[ $os == "CentOS" ]]; then
+      [[ $script =~ "rwth-rocky-modulesrc" ]] || [[ -r $script ]] && source "$script"
+    fi
   done
   unset script
 fi

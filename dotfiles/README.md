@@ -22,6 +22,19 @@ Create a directory `~/local` (I use it to store any software I install personall
 and copy `bash_profile.d` into it.
 For more description see the [README](./bash_profile.d/README.md) there.
 
+## Upgrade of Claix18 from CentOS7 to Rocky Linux 8.7
+
+The RWTH HPC Cluster Claix18 is migrating from CentOS to Rocky Linux. With that change
+also the `module` system is changed. To reflect that the current branch loads the
+corresponding files depending on the currently used OS to allow for a transition time.
+
+Since the module names changed, you can provide necessary modules in the new 
+`dot.rwth-rocky-modulesrc` which has to be copied into the home directory as 
+`.rwth-rocky-modulesrc`.
+
+IMPORTANT NOTICE: This change has not yet been adopted in the `tools-for-g16.bash`
+repository. Those scripts will not continue to work on Rocky Linux.
+
 ## Contents-tree
 
 ```

@@ -1,0 +1,16 @@
+#!/bin/false
+# This is a text/configuration file intended for the use on the RWTH RZ cluster.
+# The file should be used in conjunction with the init-modules script from 
+# https://github.com/O2-AC/rwth-tools
+#
+# Lines starting with a hastag will be skipped.
+# To load a list of modules on startup, include their names here one per line:
+Python/3.10.4
+GCC/11.3.0
+OpenMPI/4.1.4
+intel-compilers/2022.1.0
+impi/2021.6.0
+OpenBabel/3.1.1
+# (Note that the above lines need the software to actually be installed 
+# and set up with the module files from this repository.)
+#___version___: 2019-09-17-1200
