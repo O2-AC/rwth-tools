@@ -191,8 +191,9 @@ if (( ${#use_modules[@]} > 0 )) ; then
   # Load modules
   # Export current module path to be sure
   echo "MODULEPATH='$MODULEPATH'" >> "$submitfile"
+  echo "module purge" >> "$submitfile"
   for module in "${use_modules[@]}" ; do
-    echo "module load '$module'" >> "$submitfile"
+    echo "module load $module" >> "$submitfile"
   done
 else
   debug "No modules in use."
